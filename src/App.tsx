@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
-import logo from "./logo.svg";
-import "./App.css";
+import Container from "./components/Container";
+import Weather from "./pages/WeatherCard/Weather";
+
+// eslint-disable-next-line import/order
+import { LocationNameContext } from "./context/locationContext";
 
 function App() {
+  const [locationName, setLocationName] = useState("Zagreb");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocationNameContext.Provider value={{ locationName, setLocationName }}>
+      <Container>
+        <Weather />
+      </Container>
+    </LocationNameContext.Provider>
   );
 }
 
